@@ -1,0 +1,7 @@
+build
+
+SimpleEncrypt/Debug
+SimpleEncrypt/Release
+SimpleEncrypt/x64
+
+.vs

@@ -1,0 +1,75 @@
+# define macros
+
+DIR_SRC = .\SimpleEncrypt
+DIR_BUILD = .\build
+DIR_INCLUDE = .\include
+DIR_LIB = .\lib
+#DIR_RES = .\resources
+DIR_RES = $(DIR_SRC)
+DIR_BIN = $(DIR_BUILD)\bin
+# DIR_BIN_X86 = $(DIR_BIN)\X86
+# DIR_INTERMEDIATE = $(DIR_BUILD)
+# DIR_INTERMEDIATE_X86 = $(DIR_INTERMEDIATE)\x86
+
+SRC_FILES = $(DIR_SRC)\Source.cpp 
+RES_FILES = $(DIR_RES)\SimpleEncrypt.rc
+
+ALL_LINK_FILES = $(DIR_BUILD)\*.obj $(DIR_BUILD)\*.res
+
+BUILD_NAME = program
+BUILD_EXE = $(DIR_BIN)\$(BUILD_NAME).exe 
+
+FINAL_EXE = TxtEncryptor.exe
+
+
+
+all : clean create_dirs build post_action
+build : compile recources link
+
+
+
+# Removing output folders:
+clean:
+	@if exist $(DIR_BIN) rmdir /S /Q $(DIR_BIN)
+	@if exist $(DIR_BUILD) rmdir /S /Q $(DIR_BUILD)
+
+
+# Creating output folders:
+create_dirs:
+	@if not exist $(DIR_BUILD) mkdir $(DIR_BUILD)
+	@if not exist $(DIR_BIN) mkdir $(DIR_BIN)
+
+
+# Compiling CPP files
+compile : $(SRC_FILES)
+	@echo Compiling...
+	@echo =========================
+	@cl /nologo /std:c++17 /permissive- /GS /GL /w /Gy /Zc:wchar_t /Gm- /O2 /Zc:inline /D "NDEBUG" /D "_CONSOLE" /D "_UNICODE" /D "UNICODE" /fp:precise /MT /EHsc /diagnostics:column /Fe$(BUILD_EXE) /I$(DIR_INCLUDE) /c $(SRC_FILES)
+	@if exist *.obj @move *.obj $(DIR_BUILD)
+	@echo =========================
+	@echo Succes!
+
+
+# Compiling RC files
+recources :
+	@echo Load resources...
+	@echo =========================
+	@rc /nologo /i$(DIR_INCLUDE) /v /l 0x0409 /D "_UNICODE" /D "UNICODE" $(RES_FILES) 
+	@if exist $(DIR_RES)\*.res @move $(DIR_RES)\*.res $(DIR_BUILD)
+	@echo =========================
+	@echo Succes!
+
+
+# Link to executable
+link : $(ALL_LINK_FILES)
+	@echo Linking...
+	@echo =========================
+	@link /nologo /OUT:$(BUILD_EXE) $(ALL_LINK_FILES) /DYNAMICBASE "kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" /LTCG:incremental /MACHINE:X64 /INCREMENTAL:NO /SUBSYSTEM:WINDOWS /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /LIBPATH:$(DIR_LIB) /TLBID:1
+	@echo =========================
+	@echo Succes!
+
+
+post_action: 
+	@move $(BUILD_EXE) $(DIR_BIN)\$(FINAL_EXE)
+	@move $(DIR_BIN)\$(BUILD_NAME)* $(DIR_BUILD)
+	@echo =========    Build completed!    =========
