@@ -5,6 +5,9 @@ WindowBase::WindowBase(HINSTANCE hInst)
 	_hInst = hInst;
 }
 
+WindowBase::~WindowBase()
+{ }
+
 void WindowBase::show(bool isVisible) const
 {
 	ShowWindowAsync(_hWnd, isVisible ? SW_SHOW : SW_HIDE);
@@ -25,10 +28,12 @@ void WindowBase::destroyWindow() const
 	DestroyWindow(_hWnd);
 }
 
-LONG64 WindowBase::addChild(WindowBase&& child)
+
+LONG64 WindowBase::addChild(LPComponentBase child)
 {
 	LONG64 id = _childs.size() + 1;
-	_childs[id] = std::move(child);
+	_childs[id] = child;
+	child->create(id);
 	return id;
 }
 
@@ -36,9 +41,6 @@ void WindowBase::removeChild(LONG64 childId)
 {
 	_childs.erase(childId);
 }
-
-WindowBase::~WindowBase()
-{ }
 
 HWND WindowBase::initializeWindow(
 	DWORD exStyle, LPCWSTR windowName, DWORD style, 
@@ -63,6 +65,7 @@ LRESULT WindowBase::routeEvents(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 		}
 	}
 	catch (...) { }
+	if (wnd == nullptr) return DefWindowProc(hWnd, msg, wp, lp);
 	switch (msg)
 	{
 	case WM_CREATE:
@@ -83,6 +86,9 @@ LRESULT WindowBase::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) cons
 
 LRESULT WindowBase::onCommand(WPARAM wp, LPARAM lp) const
 {
-	onRawWndProc(_hWnd, WM_COMMAND, wp, lp);
+	int id = LOWORD(wp);
+	if (_childs.find(id) != _childs.end())
+		_childs.at(id)->trigger(wp, lp);
+	return onRawWndProc(_hWnd, WM_COMMAND, wp, lp);
 }
 

@@ -1,4 +1,5 @@
 #include "Source.h"
+#include "MainWindow.h"
 
 WNDCLASS NewWindClass(HBRUSH BgCol, HCURSOR Curs, HINSTANCE hInst, HICON Ico, LPCWSTR Name, WNDPROC Procedure) {
 	WNDCLASS NWC = { 0 };
@@ -44,32 +45,36 @@ bool registerClass(HINSTANCE hInst) {
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR args, int ncmdshow) {
 
-	setlocale(LC_ALL, "ru");
+//	setlocale(LC_ALL, "ru");
+//
+//#ifdef DEBUG
+//	//MessageBoxA(NULL, args, "LPSTR args", MB_OK);
+//#endif // DEBUG
+//
+//	if (args[0] == 0) {
+//		startFromFile = false;
+//	}
+//	else {
+//		std::string argPath(args);
+//
+//		for (std::string::const_iterator i = argPath.begin(), end = argPath.end(); i != end; i++)
+//			if (*i == '\"')
+//				argPath.erase(i);
+//
+//		memcpy(path, argPath.c_str(), MAX_PATH);
+//		startFromFile = true;
+//	}
+//
+//	registerClass(hInst);
+//
+//
+//	global_hWnd = CreateWindow(L"MainWndClass", L"TxtEncryptor", WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_THICKFRAME) | WS_VISIBLE, CenterX(WINDOW_WIDTH + 16), CenterY(WINDOW_HEIGHT + 39), WINDOW_WIDTH + 16, WINDOW_HEIGHT + 39, NULL, NULL, hInst, NULL);
+//	global_hInst = hInst;
 
-#ifdef DEBUG
-	//MessageBoxA(NULL, args, "LPSTR args", MB_OK);
-#endif // DEBUG
-
-	if (args[0] == 0) {
-		startFromFile = false;
-	}
-	else {
-		std::string argPath(args);
-
-		for (std::string::const_iterator i = argPath.begin(), end = argPath.end(); i != end; i++)
-			if (*i == '\"')
-				argPath.erase(i);
-
-		memcpy(path, argPath.c_str(), MAX_PATH);
-		startFromFile = true;
-	}
-
-	registerClass(hInst);
+	MainWindow mainWnd(hInst);
+	
 
 	MSG MainMessage = { 0 };
-
-	global_hWnd = CreateWindow(L"MainWndClass", L"TxtEncryptor", WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_THICKFRAME) | WS_VISIBLE, CenterX(WINDOW_WIDTH + 16), CenterY(WINDOW_HEIGHT + 39), WINDOW_WIDTH + 16, WINDOW_HEIGHT + 39, NULL, NULL, hInst, NULL);
-	global_hInst = hInst;
 
 	while (GetMessage(&MainMessage, NULL, NULL, NULL)) {
 		TranslateMessage(&MainMessage);

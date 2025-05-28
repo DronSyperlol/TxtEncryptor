@@ -19,12 +19,36 @@
     <Filter Include="Исходные файлы\Windows">
       <UniqueIdentifier>{c7fb5586-9206-43e2-8345-40e12b7cc288}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Windows\Components">
+      <UniqueIdentifier>{fad98b40-83f3-427b-8b53-7fd9e2731982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Windows\Components">
+      <UniqueIdentifier>{af87c4dd-6b41-4a56-aee1-d3636cb9edb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Windows\Pages">
+      <UniqueIdentifier>{c4853042-5b5e-4294-9965-4ccb2bf0b257}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Windows\Pages">
+      <UniqueIdentifier>{592111dc-c1f3-41c7-a800-6138f7c716e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="WindowBase.cpp">
+      <Filter>Исходные файлы\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Edit.cpp">
+      <Filter>Исходные файлы\Windows\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Исходные файлы\Windows\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Исходные файлы\Windows\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentBase.cpp">
       <Filter>Исходные файлы\Windows</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,6 +66,18 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="WindowBase.h">
+      <Filter>Файлы заголовков\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Edit.h">
+      <Filter>Файлы заголовков\Windows\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Файлы заголовков\Windows\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Файлы заголовков\Windows\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentBase.h">
       <Filter>Файлы заголовков\Windows</Filter>
     </ClInclude>
   </ItemGroup>
