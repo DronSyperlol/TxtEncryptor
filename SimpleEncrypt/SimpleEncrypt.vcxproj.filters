@@ -31,6 +31,12 @@
     <Filter Include="Файлы заголовков\Windows\Pages">
       <UniqueIdentifier>{592111dc-c1f3-41c7-a800-6138f7c716e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Types">
+      <UniqueIdentifier>{8e863f7d-eae9-44fd-a1c2-3c23c9c4e926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Types">
+      <UniqueIdentifier>{a1191a2d-d800-4e2a-a59f-51e2a06c87bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -50,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="ComponentBase.cpp">
       <Filter>Исходные файлы\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardState.cpp">
+      <Filter>Исходные файлы\Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="ComponentBase.h">
       <Filter>Файлы заголовков\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardState.h">
+      <Filter>Файлы заголовков\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardKeys.h">
+      <Filter>Файлы заголовков\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

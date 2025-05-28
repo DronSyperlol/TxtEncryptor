@@ -11,6 +11,9 @@ private:
 	
 	LRESULT onWindowCreate(WPARAM wp, LPARAM lp) override;
 	LRESULT onWindowDestroy(WPARAM wp, LPARAM lp) override;
+	LRESULT onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const override;
+
+	LONG64 _edit_id = NULL;
 
 public:
 	MainWindow(HINSTANCE);

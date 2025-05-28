@@ -29,17 +29,25 @@ void WindowBase::destroyWindow() const
 }
 
 
-LONG64 WindowBase::addChild(LPComponentBase child)
+LONG64 WindowBase::addComponent(LPComponentBase child)
 {
-	LONG64 id = _childs.size() + 1;
-	_childs[id] = child;
+	LONG64 id = _components.size() + 1;
+	_components[id] = child;
 	child->create(id);
 	return id;
 }
 
-void WindowBase::removeChild(LONG64 childId)
+void WindowBase::removeComponent(LONG64 childId)
 {
-	_childs.erase(childId);
+	_components.erase(childId);
+}
+
+LPComponentBase WindowBase::getComponent(LONG64 componentId) const
+{
+	if (_components.find(componentId) != _components.end())
+		return _components.at(componentId);
+	else
+		return nullptr;
 }
 
 HWND WindowBase::initializeWindow(
@@ -87,8 +95,8 @@ LRESULT WindowBase::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) cons
 LRESULT WindowBase::onCommand(WPARAM wp, LPARAM lp) const
 {
 	int id = LOWORD(wp);
-	if (_childs.find(id) != _childs.end())
-		_childs.at(id)->trigger(wp, lp);
+	auto component = getComponent(id);
+	if (component != nullptr) component->trigger(wp, lp);
 	return onRawWndProc(_hWnd, WM_COMMAND, wp, lp);
 }
 

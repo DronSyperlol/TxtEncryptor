@@ -158,6 +158,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Edit.cpp" />
+    <ClCompile Include="KeyboardState.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="WindowBase.cpp" />
@@ -167,6 +168,8 @@
     <ClInclude Include="Classes.h" />
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="Edit.h" />
+    <ClInclude Include="KeyboardKeys.h" />
+    <ClInclude Include="KeyboardState.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Structs.h" />

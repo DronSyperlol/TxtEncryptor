@@ -7,16 +7,16 @@ private:
 
 	HWND initializeWindow(
 		DWORD exStyle, LPCWSTR className, LPCWSTR windowName, DWORD style,
-		int x, int y, int width, int height, int id
-	) const;
-
+		int x, int y, int width, int height, int id) const;
 
 public:
 	ComponentBase(HINSTANCE, LPCWSTR className, HWND parent, int x, int y, int width, int height);
 	virtual ~ComponentBase();
-
 	void create(int id);
 	virtual void trigger(WPARAM wp, LPARAM lp) const = 0;
+
+	virtual void move(int x, int y) const;
+	virtual void size(int cx, int cy) const;
 
 protected:
 	HINSTANCE _hInst;
@@ -24,11 +24,11 @@ protected:
 	LPCWSTR _className;
 	POINT _point;
 	SIZE _size;
-
 	HWND _hWnd =			NULL;
 	WNDPROC _defWndProc =	NULL;
 	int _id =				NULL;
-	
+	DWORD _additionalStyles = NULL;
+
 	virtual LRESULT onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const;
 };
 

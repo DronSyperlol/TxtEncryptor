@@ -6,7 +6,8 @@
 
 class WindowBase {
 private: 
-	std::map<LONG64, LPComponentBase> _childs;
+	std::map<LONG64, LPComponentBase> _components;
+	//std::map<HWND, WindowBase*> _childs;
 public:
 
 	WindowBase(HINSTANCE hInst);
@@ -16,10 +17,6 @@ public:
 	virtual void move(int x, int y) const;
 	virtual void sendMessage(UINT msg, WPARAM wParam, LPARAM lParam) const;
 	virtual void destroyWindow() const;
-
-
-	LONG64 addChild(LPComponentBase child);
-	void removeChild(LONG64 childId);
 
 protected:
 	HINSTANCE _hInst = NULL;
@@ -40,6 +37,12 @@ protected:
 	virtual LRESULT onWindowCreate(WPARAM, LPARAM) = 0;
 	virtual LRESULT onWindowDestroy(WPARAM, LPARAM) = 0;
 	virtual LRESULT onCommand(WPARAM, LPARAM) const;
+
+	LONG64 addComponent(LPComponentBase child);
+	void removeComponent(LONG64 componentId);
+	LPComponentBase getComponent(LONG64 componentId) const;
+
+
 };
 
 typedef WindowBase* LPWindowBase;
