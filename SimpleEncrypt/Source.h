@@ -21,14 +21,14 @@
 
 //	================  //
 //					  //
-//	#define DEBUG	  //
+	#define DEBUG	  //
 //					  //
 //	================  //
 
 #ifdef DEBUG
-#pragma comment(lib, "Cryptlib/Debug/cryptlib.lib")
+#pragma comment(lib, "Debug/cryptlib.lib")
 #else
-#pragma comment(lib, "Cryptlib/Release/cryptlib.lib")
+#pragma comment(lib, "Release/cryptlib.lib")
 #endif
 
 #pragma comment(linker,"\"/manifestdependency:type='win32' \

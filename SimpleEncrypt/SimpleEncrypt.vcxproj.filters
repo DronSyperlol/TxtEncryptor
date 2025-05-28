@@ -13,10 +13,19 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\Windows">
+      <UniqueIdentifier>{417b6010-ce82-4f90-8e5e-ae9f63641cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Windows">
+      <UniqueIdentifier>{c7fb5586-9206-43e2-8345-40e12b7cc288}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowBase.cpp">
+      <Filter>Исходные файлы\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="Classes.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowBase.h">
+      <Filter>Файлы заголовков\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
