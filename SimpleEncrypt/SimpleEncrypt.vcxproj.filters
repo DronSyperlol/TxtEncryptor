@@ -95,6 +95,9 @@
     <ClInclude Include="KeyboardKeys.h">
       <Filter>Файлы заголовков\Types</Filter>
     </ClInclude>
+    <ClInclude Include="Shortcuts.h">
+      <Filter>Файлы заголовков\Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SimpleEncrypt.rc">

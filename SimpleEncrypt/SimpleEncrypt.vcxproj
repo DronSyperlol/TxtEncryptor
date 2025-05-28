@@ -172,6 +172,7 @@
     <ClInclude Include="KeyboardState.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Shortcuts.h" />
     <ClInclude Include="Structs.h" />
     <ClInclude Include="Source.h" />
     <ClInclude Include="WindowBase.h" />

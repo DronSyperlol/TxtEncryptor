@@ -1,5 +1,6 @@
 #include "Edit.h"
 #include "KeyboardKeys.h"
+#include "Shortcuts.h"
 
 LRESULT Edit::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const
 {
@@ -12,10 +13,11 @@ LRESULT Edit::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const
 		{
 		case KeyboardKeys::Key_S:
 			if (_kState->ctrlPressed() && !_kState->shiftPressed())
-				MessageBox(NULL, L"save!", L"shortcut", MB_OK);
+				SendMessage(_parent, WM_USER, Edit::ON_SHORTCUT | Shortcuts::Save << 16, _id);
 			break;
 		default:
 			_kState->keyDown(static_cast<KeyboardKeys>(key));
+			break;
 		}
 	}
 	break;
@@ -26,6 +28,7 @@ LRESULT Edit::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const
 		{
 		default:
 			_kState->keyUp(static_cast<KeyboardKeys>(key));
+			break;
 		}
 	}
 	break;
@@ -40,11 +43,11 @@ void Edit::size(int cx, int cy) const
 	ComponentBase::size(cx - PADDING_END, cy - PADDING_END);
 }
 
-Edit::Edit(HINSTANCE hInst, HWND parent, int x, int y, int width, int height)
+Edit::Edit(HINSTANCE hInst, HWND parent, int x, int y, int width, int height, DWORD additionalStyles)
 	: ComponentBase(hInst, L"edit", parent, x + PADDING, y + PADDING, width - PADDING_END, height - PADDING_END)
 {
 	_kState = new KeyboardState();
-	_additionalStyles = ES_MULTILINE | ES_AUTOVSCROLL | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
+	_additionalStyles = additionalStyles;
 }
 
 Edit::~Edit()
