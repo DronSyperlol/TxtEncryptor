@@ -37,6 +37,9 @@
     <Filter Include="Исходные файлы\Types">
       <UniqueIdentifier>{a1191a2d-d800-4e2a-a59f-51e2a06c87bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Functions">
+      <UniqueIdentifier>{7dde8938-36cd-42a4-9f62-d0b6af86ad70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -48,9 +51,6 @@
     <ClCompile Include="Edit.cpp">
       <Filter>Исходные файлы\Windows\Components</Filter>
     </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Исходные файлы\Windows\Pages</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Исходные файлы\Windows\Components</Filter>
     </ClCompile>
@@ -59,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="KeyboardState.cpp">
       <Filter>Исходные файлы\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Исходные файлы\Windows\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadDialog.cpp">
+      <Filter>Исходные файлы\Windows\Pages</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Shortcuts.h">
       <Filter>Файлы заголовков\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadDialog.h">
+      <Filter>Файлы заголовков\Windows\Pages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "Edit.h"
 #include "Button.h"
 #include "Shortcuts.h"
+#include "LoadDialog.h"
 
 LPWNDCLASSEX MainWindow::_wndClass = nullptr;
 
@@ -40,7 +41,7 @@ LRESULT MainWindow::onWindowDestroy(WPARAM wp, LPARAM lp)
 	return DefWindowProc(_hWnd, WM_DESTROY, wp, lp);
 }
 
-LRESULT MainWindow::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const
+LRESULT MainWindow::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
 	switch (msg) {
 	case WM_SIZE:
@@ -56,8 +57,9 @@ LRESULT MainWindow::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) cons
 			{
 			case Shortcuts::Save:
 			{
-				if (lp == _edit_id)
-					MessageBox(_hWnd, L"Save!", L"WM_USER", MB_OK);
+				if (lp == _edit_id) {
+					HWND dialogWnd = addChild(new LoadDialog(_hInst, _hWnd));
+				}
 			}
 			break;
 			}

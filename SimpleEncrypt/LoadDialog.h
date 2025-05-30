@@ -1,20 +1,27 @@
 #pragma once
-
 #include "WindowBase.h"
 
-
-class MainWindow : public WindowBase {
+class LoadDialog : public WindowBase
+{
 private:
 	static LPWNDCLASSEX _wndClass;
 
 	LPCWSTR getClassName() const override;
-	
+
 	LRESULT onWindowCreate(WPARAM wp, LPARAM lp) override;
 	LRESULT onWindowDestroy(WPARAM wp, LPARAM lp) override;
 	LRESULT onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) override;
+	//LRESULT onCommand(WPARAM wp, LPARAM lp) override;
 
-	LONG64 _edit_id = NULL;
+	int _edit_pass_1_id = 0;
+	int _edit_pass_2_id = 0;
+
+	int _btn_load = 0;
+	int _btn_cancel = 0;
 
 public:
-	MainWindow(HINSTANCE);
+	LoadDialog(HINSTANCE, HWND parent);
+
+protected:
 };
+

@@ -17,7 +17,7 @@ public:
 	~Edit();
 	void trigger(WPARAM wp, LPARAM lp) const override;
 
-	static constexpr int ON_SHORTCUT = 1;
+	static constexpr short ON_SHORTCUT = 1000;
 
 protected: 
 };

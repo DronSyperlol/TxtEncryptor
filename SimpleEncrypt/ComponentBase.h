@@ -24,10 +24,11 @@ protected:
 	LPCWSTR _className;
 	POINT _point;
 	SIZE _size;
-	HWND _hWnd =			NULL;
-	WNDPROC _defWndProc =	NULL;
-	int _id =				NULL;
-	DWORD _additionalStyles = NULL;
+	HWND _hWnd						= NULL;
+	WNDPROC		_defWndProc			= NULL;
+	int			_id					= NULL;
+	DWORD		_additionalStyles	= NULL;
+	LPCWSTR		_name				= NULL;
 
 	virtual LRESULT onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const;
 };

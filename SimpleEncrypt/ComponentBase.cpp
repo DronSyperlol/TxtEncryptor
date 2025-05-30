@@ -17,7 +17,7 @@ ComponentBase::~ComponentBase()
 void ComponentBase::create(int id)
 {
 	_id = id;
-	_hWnd = initializeWindow(NULL, _className, L"", WS_VISIBLE | WS_CHILD | _additionalStyles,
+	_hWnd = initializeWindow(NULL, _className, _name, WS_VISIBLE | WS_CHILD | _additionalStyles,
 		_point.x, _point.y, _size.cx, _size.cy, id);
 	SetWindowLongPtr(_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 	_defWndProc = (WNDPROC)SetWindowLongPtr(_hWnd, GWLP_WNDPROC, (LONG_PTR)ComponentBase::routeEvents);

@@ -39,6 +39,8 @@ LONG64 WindowBase::addComponent(LPComponentBase child)
 
 void WindowBase::removeComponent(LONG64 childId)
 {
+	LPComponentBase tmp = _components[childId];
+	delete tmp;
 	_components.erase(childId);
 }
 
@@ -48,6 +50,19 @@ LPComponentBase WindowBase::getComponent(LONG64 componentId) const
 		return _components.at(componentId);
 	else
 		return nullptr;
+}
+
+HWND WindowBase::addChild(WindowBase* window)
+{
+	_childs[window->_hWnd] = window;
+	return window->_hWnd;
+}
+
+void WindowBase::removeChild(HWND hWnd)
+{
+	LPWindowBase tmp = _childs[hWnd];
+	delete tmp;
+	_childs.erase(hWnd);
 }
 
 HWND WindowBase::initializeWindow(
@@ -87,12 +102,12 @@ LRESULT WindowBase::routeEvents(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 	}
 }
 
-LRESULT WindowBase::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) const
+LRESULT WindowBase::onRawWndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
 	return DefWindowProc(hWnd, msg, wp, lp);
 }
 
-LRESULT WindowBase::onCommand(WPARAM wp, LPARAM lp) const
+LRESULT WindowBase::onCommand(WPARAM wp, LPARAM lp)
 {
 	int id = LOWORD(wp);
 	auto component = getComponent(id);
